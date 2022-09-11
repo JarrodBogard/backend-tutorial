@@ -1,5 +1,6 @@
 const express = require("express");
 const app = express();
+const cors = require("cors");
 const customerRoutes = require("./routes/cutomerRoutes");
 const tradeRoutes = require("./routes/tradeRoutes");
 
@@ -10,6 +11,7 @@ app.get("/", (req, res) => {
 });
 
 // MiddleWare
+app.use(cors());
 app.use(express.json());
 
 app.use("/customers", customerRoutes);
@@ -18,6 +20,9 @@ app.use("/trades", tradeRoutes);
 app.listen(PORT, () =>
   console.log(`Listening on port: http://localhost:${PORT}`)
 );
+
+//// Hosting ////
+// check environment variables on hosting site if resources are working - also keep in mind that the front-end and back-end will each have their own variables and will be kept in their on system environment variables file/page
 
 /////////////////////////////////////////////////////////
 /*
